@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>New game</h1>
+  <ul class="d-flex gap-4">
+    <% @letters.each do |letter| %>
+    <li class="btn btn-primary disabled"><%= letter %></li>
+  <% end %>
+  </ul>
+
+  <form action="/score" method="post" data-turbo="false">
+    <div class="mb-3">
+      <label for="text" class="form-label">Your answer</label>
+      <input type="text" class="form-control" id="text" name="word">
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :grid_token, @letters %>
+  <%= hidden_field_tag :time_token, Time.now %>
+</form>
+</div>
